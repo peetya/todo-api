@@ -1,1 +1,1 @@
-# To-do application - User API
+# To-do application - API

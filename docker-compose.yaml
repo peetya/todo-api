@@ -1,8 +1,8 @@
 version: '3'
 
 services:
-  todo_user_api_nginx:
-    container_name: todo_user_api_nginx
+  todo_api_nginx:
+    container_name: todo_api_nginx
     image: nginx:stable
     networks:
       - symfony
@@ -13,8 +13,8 @@ services:
       - ./docker/nginx/nginx.conf:/etc/nginx/conf.d/default.conf:cached
     working_dir: /etc/nginx/conf.d
 
-  todo_user_api_phpfpm:
-    container_name: todo_user_api_phpfpm
+  todo_api_phpfpm:
+    container_name: todo_api_phpfpm
     build:
       context: ./docker/phpfpm
     expose:
@@ -25,18 +25,18 @@ services:
       - .:/var/www/html:cached
     working_dir: /var/www/html
 
-  todo_user_api_db:
-    container_name: todo_user_api_db
+  todo_api_db:
+    container_name: todo_api_db
     image: mariadb:latest
     environment:
       MYSQL_ROOT_PASSWORD: password
     networks:
       - symfony
     volumes:
-      - todo_user_api_db_volume:/var/lib/mysql
+      - todo_api_db_volume:/var/lib/mysql
 
-  todo_user_api_adminer:
-    container_name: todo_user_api_adminer
+  todo_api_adminer:
+    container_name: todo_api_adminer
     image: adminer:latest
     ports:
       - 8080:8080
@@ -44,10 +44,10 @@ services:
       - symfony
     environment:
       ADMINER_DESIGN: lucas-sandery
-      ADMINER_DEFAULT_SERVER: todo_user_api_db
+      ADMINER_DEFAULT_SERVER: todo_api_db
 
 volumes:
-  todo_user_api_db_volume:
+  todo_api_db_volume:
     driver: local
 
 networks:
