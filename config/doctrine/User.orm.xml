@@ -1,0 +1,15 @@
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+                          https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd"
+>
+    <entity name="App\Entity\User" repository-class="App\Repository\UserRepository">
+        <id name="id" type="integer" column="id">
+            <generator />
+        </id>
+        <field name="username" length="255" unique="true" />
+        <field name="password" length="255" />
+        <field name="firstName" />
+        <field name="lastName" />
+    </entity>
+</doctrine-mapping>
